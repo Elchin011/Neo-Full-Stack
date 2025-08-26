@@ -160,7 +160,7 @@ const CouponList = () => {
               e.preventDefault();
               formik.handleSubmit();
             }}
-            className="space-y-4"
+            className="space-y-4 grid grid-cols-2 gap-4"
           >
             <div>
               <Label htmlFor="code">Coupon Code</Label>
@@ -224,21 +224,20 @@ const CouponList = () => {
                 className="mt-2"
               />
             </div>
-
-            <Button
-              disabled={isCreating || isUpdating}
-              className="w-full mt-4 py-3"
-              type="submit"
-            >
-              {openEditDialog
-                ? isUpdating
-                  ? "Updating..."
-                  : "Update"
-                : isCreating
+          </form>
+          <Button
+            disabled={isCreating || isUpdating}
+            className="w-full mt-4 py-3"
+            type="submit"
+          >
+            {openEditDialog
+              ? isUpdating
+                ? "Updating..."
+                : "Update"
+              : isCreating
                 ? "Creating..."
                 : "Create"}
-            </Button>
-          </form>
+          </Button>
         </CommonDialog>
       )}
     </div>

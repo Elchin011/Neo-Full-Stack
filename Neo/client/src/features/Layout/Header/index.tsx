@@ -98,11 +98,17 @@ export const Header = () => {
         <div className="container mx-auto grid grid-cols-2">
           <div className="grid grid-cols-2">
             <div>
-              <div className="flex items-center gap-5">
-                <Instagram size={16} color='white' fill='black' />
-                <Facebook size={16} color='white' fill='black' />
-                <Twitch size={16} color='white' fill='black' />
-                <Twitter size={16} color='white' fill='black' />
+              <div className="flex items-center gap-3">
+                <Instagram size={15} color='white' fill='black' />
+                <Facebook size={15} color='white' fill='black' />
+                <Twitch size={15} color='white' fill='black' />
+                <Twitter size={15} color='white' fill='black' />
+              </div>
+              <div>
+                <p>
+                  
+                  neoocular@example.com
+                </p>
               </div>
             </div>
           </div>

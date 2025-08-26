@@ -5,6 +5,7 @@ const ProductCategoriesSchema = require("../models/Product/ProductCategorySchema
 const UserSchema = require("../models/User/UserSchema");
 const OrderSchema = require("../models/Order/OrderSchema");
 const ProductCategorySchema = require("../models/Product/ProductCategorySchema");
+const Coupon = require("../models/Cupon/CouponSchema");
 
 const getAllProducts = async (req, res) => {
   try {
@@ -35,7 +36,9 @@ const getAllProducts = async (req, res) => {
       products = await ProductSchema.find()
         .populate({
           path: "categories",
-          match: category ? { $or: [{ _id: category }, { name: category }] } : {},
+          match: category
+            ? { $or: [{ _id: category }, { name: category }] }
+            : {},
         })
         .populate({
           path: "colors",
@@ -47,7 +50,7 @@ const getAllProducts = async (req, res) => {
         });
 
       // İndi də filterləyirik ki, seçilmiş filterə uyğun olmayanlar kənarda qalsın:
-      products = products.filter(p => {
+      products = products.filter((p) => {
         // category yoxdursa true, yoxdursa productun categories array-i boş olmamalıdır
         const catMatch = category ? p.categories.length > 0 : true;
         const colorMatch = color ? p.colors.length > 0 : true;
@@ -73,7 +76,6 @@ const getAllProducts = async (req, res) => {
     });
   }
 };
-
 
 const getAllColors = async (req, res) => {
   const colors = await ProductColorSchema.find();
@@ -162,7 +164,6 @@ const deleteProductColor = async (req, res) => {
   });
 };
 
-
 const getAllCategories = async (req, res) => {
   const categories = await ProductCategoriesSchema.find();
   if (!categories || categories.length === 0) {
@@ -195,8 +196,6 @@ const createProductCategory = async (req, res) => {
   });
 };
 
-
-
 const deleteProductCategory = async (req, res) => {
   const { id } = req.params;
   const category = await ProductCategoriesSchema.findByIdAndDelete(id);
@@ -209,8 +208,6 @@ const deleteProductCategory = async (req, res) => {
     message: "Category deleted successfully",
   });
 };
-
-
 
 // const createProduct = async (req, res) => {
 //   const { name, price, description, categories, stockQuantity, sizes, colors } =
@@ -273,18 +270,9 @@ const deleteProductCategory = async (req, res) => {
 //     });
 // };
 
-
-
 const createProduct = async (req, res) => {
-  const {
-    name,
-    price,
-    description,
-    categories,
-    stockQuantity,
-    sizes,
-    colors,
-  } = req.body;
+  const { name, price, description, categories, stockQuantity, sizes, colors } =
+    req.body;
 
   // Boş və ya yanlış tip yoxlamasını daha dəqiq etmək üçün:
   if (
@@ -327,7 +315,6 @@ const createProduct = async (req, res) => {
   });
 };
 
-
 const deleteProduct = async (req, res) => {
   try {
     const productId = req.params.id;
@@ -347,7 +334,6 @@ const deleteProduct = async (req, res) => {
     });
   }
 };
-
 
 const updateProduct = async (req, res) => {
   const { id } = req.params;
@@ -370,25 +356,32 @@ const updateProduct = async (req, res) => {
   }
 
   const updateProduct = async (req, res) => {
-  const { id } = req.params;
-  const { name, price, description, categories, stockQuantity, sizes, colors } =
-    req.body;
+    const { id } = req.params;
+    const {
+      name,
+      price,
+      description,
+      categories,
+      stockQuantity,
+      sizes,
+      colors,
+    } = req.body;
 
-  if (!name || !price || !categories || stockQuantity === undefined) {
-    return res.status(400).json({
-      message: "All fields are required",
-    });
-  }
+    if (!name || !price || !categories || stockQuantity === undefined) {
+      return res.status(400).json({
+        message: "All fields are required",
+      });
+    }
 
-  const parsedPrice = Number(price);
-  const parsedStockQuantity = Number(stockQuantity);
+    const parsedPrice = Number(price);
+    const parsedStockQuantity = Number(stockQuantity);
 
-  if (isNaN(parsedPrice) || isNaN(parsedStockQuantity)) {
-    return res.status(400).json({
-      message: "Price and stockQuantity must be numbers",
-    });
-  }
-}
+    if (isNaN(parsedPrice) || isNaN(parsedStockQuantity)) {
+      return res.status(400).json({
+        message: "Price and stockQuantity must be numbers",
+      });
+    }
+  };
 
   const updatedProduct = await ProductSchema.findByIdAndUpdate(
     id,
@@ -418,24 +411,24 @@ const updateProduct = async (req, res) => {
   });
 };
 
-
 const getProductById = async (req, res) => {
   const { id } = req.params;
   try {
-    const product = await ProductSchema
-      .findById(id)
+    const product = await ProductSchema.findById(id)
       .populate("categories")
       .populate("sizes")
       .populate("colors");
-      if (!product) {
-        return res.status(404).json({ message: "Product not found" });
-      }
-      return res.status(200).json({
-        data: product,
-        message: "Product fetched successfully",
-      });
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+    return res.status(200).json({
+      data: product,
+      message: "Product fetched successfully",
+    });
   } catch (err) {
-    return res.status(500).json({ message: "Server error", error: err.message });
+    return res
+      .status(500)
+      .json({ message: "Server error", error: err.message });
   }
 };
 
@@ -445,7 +438,7 @@ const createOrder = async (req, res) => {
       user,
       products,
       totalAmount,
-      discount = 0,
+      couponCode, // frontend-dən gəlir
       status = "pending",
       address,
       firstName,
@@ -454,34 +447,72 @@ const createOrder = async (req, res) => {
       phone,
     } = req.body;
 
-    if (!user || !products || !Array.isArray(products) || products.length === 0) {
-      return res.status(400).json({ message: "User and products are required" });
+    if (
+      !user ||
+      !products ||
+      !Array.isArray(products) ||
+      products.length === 0
+    ) {
+      return res
+        .status(400)
+        .json({ message: "User and products are required" });
     }
 
     if (!totalAmount || isNaN(Number(totalAmount))) {
-      return res.status(400).json({ message: "Total amount is required and must be a number" });
+      return res
+        .status(400)
+        .json({ message: "Total amount is required and must be a number" });
     }
 
-    const finalPrice = Number(totalAmount) - Number(discount);
+    // Kupon yoxlaması
+    let discount = 0;
+    let finalPrice = Number(totalAmount);
+
+    let appliedCoupon = couponCode;
+    try {
+      appliedCoupon = JSON.parse(couponCode);
+    } catch (e) {
+      appliedCoupon = couponCode;
+    }
+
+    if (appliedCoupon) {
+      const coupon = await Coupon.findOne({
+        code: { $regex: `^${appliedCoupon.trim()}$`, $options: "i" },
+        isActive: true,
+      });
+      
+      if (coupon) {
+        if (coupon.discountType === "percentage") {
+          discount = (totalAmount * coupon.discountValue) / 100;
+        } else {
+          discount = coupon.discountValue;
+        }
+        finalPrice = totalAmount - discount;
+      }
+    }
 
     // User yoxla
     const foundUser = await UserSchema.findById(user);
     if (!foundUser) return res.status(404).json({ message: "User not found" });
 
     // Products yoxla
-    const productIds = products.map(p => p.product);
-    const foundProducts = await ProductSchema.find({ _id: { $in: productIds } });
+    const productIds = products.map((p) => p.product);
+    const foundProducts = await ProductSchema.find({
+      _id: { $in: productIds },
+    });
     if (!foundProducts || foundProducts.length !== productIds.length) {
-      return res.status(404).json({ message: "One or more products not found" });
+      return res
+        .status(404)
+        .json({ message: "One or more products not found" });
     }
 
-    // Yeni order yarat
+    // Order yarat
     const newOrder = new OrderSchema({
       user,
       products,
       totalAmount: Number(totalAmount),
-      discount: Number(discount),
-      finalPrice,
+      discount: Number(discount.toFixed(2)),
+      finalPrice: Number(finalPrice.toFixed(2)),
       status,
       address,
       firstName,
@@ -498,9 +529,12 @@ const createOrder = async (req, res) => {
     });
   } catch (err) {
     console.error("CreateOrder error:", err);
-    return res.status(500).json({ message: "Server error", error: err.message });
+    return res
+      .status(500)
+      .json({ message: "Server error", error: err.message });
   }
 };
+
 
 
 const deleteOrder = async (req, res) => {
@@ -511,9 +545,10 @@ const deleteOrder = async (req, res) => {
       return res.status(404).json({ message: "Order not found" });
     }
     return res.status(200).json({ message: "Order deleted successfully" });
-  }
-  catch (err) {
-    return res.status(500).json({ message: "Server error", error: err.message });
+  } catch (err) {
+    return res
+      .status(500)
+      .json({ message: "Server error", error: err.message });
   }
 };
 
@@ -603,6 +638,5 @@ module.exports = {
   deleteProductColor,
   getProductById,
   deleteOrder,
-  updateProduct
+  updateProduct,
 };
-

@@ -14,6 +14,57 @@ export default function CheckoutPage() {
   const [email, setEmail] = useState("");
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [couponCode, setCouponCode] = useState(
+    typeof window !== "undefined" ? JSON.parse(localStorage.getItem("appliedCoupon") || '""') : ""
+  );
+
+
+
+  const handleOrder = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!user || !user._id) {
+      setError("Please log in first.");
+      return;
+    }
+
+    if (!cartItems.length) {
+      setError("Cart is empty");
+      return;
+    }
+
+    try {
+      const orderData = {
+        user: user._id,
+        products: cartItems.map((item: any) => ({
+          product: item.id,
+          quantity: item.quantity,
+        })),
+        totalAmount,
+        couponCode: couponCode || null, 
+        address,
+        firstName,
+        lastname,
+        email,
+        phone,
+      };
+
+      mutate(orderData, {
+        onSuccess: () => {
+          clearCart();
+          setSuccess(true);
+        },
+        onError: (err: any) => {
+          console.error("Order error:", err);
+          setError("Failed to create order. Try again.");
+        },
+      });
+    } catch (err) {
+      console.error(err);
+      setError("An unexpected error occurred.");
+    }
+  };
+
 
   const user =
     typeof window !== "undefined"
@@ -48,38 +99,7 @@ export default function CheckoutPage() {
     mutationKey: ["createOrder"],
   });
 
-  const handleOrder = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!user || !user._id) {
-      setError("Zəhmət olmasa, əvvəlcə daxil olun.");
-      return;
-    }
-    if (!cartItems.length) {
-      setError("Səbət boşdur.");
-      return;
-    }
-    mutate(
-      {
-        user: user._id,
-        products: cartItems.map((item: any) => ({
-          product: item.id,
-          quantity: item.quantity,
-        })),
-        totalAmount: finalTotal,
-        address,
-        firstName,
-        lastname,
-        email,
-        phone,
-      },
-      {
-        onSuccess: () => {
-          clearCart();
-          setSuccess(true);
-        },
-      }
-    );
-  };
+
 
 
   // const stripePromise = loadStripe(
@@ -126,7 +146,11 @@ export default function CheckoutPage() {
     <div className="container mx-auto px-4 mt-25 py-8">
       {success ? (
         <div className="p-4 bg-green-100 text-green-700 rounded mb-4">
-          Sifarişiniz uğurla yaradıldı!
+          <h2 className="text-2xl font-semibold mb-2">Order Successful!</h2>
+          <p className="text-lg">
+            Thank you for your purchase. Your order has been placed and is being
+            processed.
+          </p>
         </div>
       ) : (
         <div>
@@ -213,7 +237,7 @@ export default function CheckoutPage() {
               </div>
               <div className="flex justify-between py-9">
                 <span className="font-semibold text-[17px] text-[#1c1c1c] tracking-[0.3px] uppercase">Discount</span>
-                <span className="text-green-600 pr-58">{discount > 0 ? `${discount} $` : "0 $"}</span>
+                <span className="pr-58">{discount > 0 ? `-$${discount} ` : "$0"}</span>
               </div>
               <div className="font-bold flex justify-between py-9">
                 <span className="font-semibold text-[17px] text-[#1c1c1c] tracking-[0.3px] uppercase">Total</span>

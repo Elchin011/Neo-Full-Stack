@@ -77,15 +77,15 @@ const validateCoupon = async (req, res) => {
     const { code, total } = req.body;
     const coupon = await CouponSchema.findOne({ code, isActive: true });
     if (!coupon) {
-      return res.status(404).json({ message: "Kupon tapılmadı" });
+      return res.status(404).json({ message: "Coupon not found" });
     }
     if (new Date() > coupon.expiryDate) {
-      return res.status(400).json({ message: "Kuponun vaxtı bitib" });
+      return res.status(400).json({ message: "Coupon has expired" });
     }
     if (total < coupon.minPurchase) {
       return res
         .status(400)
-        .json({ message: `Minimum alış ${coupon.minPurchase}₼` });
+        .json({ message: `Minimum purchase ${coupon.minPurchase}$ is required` });
     }
     let discount = 0;
     if (coupon.discountType === "percentage") {
