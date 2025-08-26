@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/Providers/CartProvider";
-import { ChevronUp, Facebook, Heart, Instagram, LogOutIcon, Menu, ShoppingBag, Twitch, Twitter, UserRound } from "lucide-react";
+import { ChevronUp, Facebook, Heart, Instagram, LogOutIcon, Mail, Menu, ShoppingBag, Twitch, Twitter, UserRound } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from 'react'
 import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react'
@@ -97,7 +97,7 @@ export const Header = () => {
       <div className="bg-black py-2">
         <div className="container mx-auto grid grid-cols-2">
           <div className="grid grid-cols-2">
-            <div>
+            <div className="flex items-center justify-center gap-2 text-white text-sm">
               <div className="flex items-center gap-3">
                 <Instagram size={15} color='white' fill='black' />
                 <Facebook size={15} color='white' fill='black' />
@@ -106,7 +106,7 @@ export const Header = () => {
               </div>
               <div>
                 <p>
-                  
+                  <Mail />
                   neoocular@example.com
                 </p>
               </div>
