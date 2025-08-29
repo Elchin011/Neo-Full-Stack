@@ -38,7 +38,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
   if (!displayUser || !displayUser.name) return null;
 
   return (
-    <div className="relative inline-block text-left" ref={menuRef}>
+    <div className="relative inline-block text-left pl-4 border-l border-gray-200" ref={menuRef}>
       <Button
         className="w-[28px] h-[28px] text-[12px] rounded-full"
         onClick={() => setOpen(!open)}

@@ -348,15 +348,17 @@ export const Header = () => {
             </nav>
           </div>
           <div className="col-span-2 flex justify-end items-center gap-4">
-            <div className="items-center flex gap-4 justify-end border-r border-gray-200 pr-4 ">
+            <div className="items-center flex gap-4 justify-end">
               <div className="hidden lg:flex items-center gap-4">
                 <Heart strokeWidth={1.5} size={18} />
+               {!user ? (
                 <button
                   onClick={() => setOpen(true)}
                   className="border-none"
                 >
                   <UserRound strokeWidth={1.5} size={18} />
                 </button>
+               ) : null}
               </div>
               <Link href="/cart">
                 <div className="relative">
