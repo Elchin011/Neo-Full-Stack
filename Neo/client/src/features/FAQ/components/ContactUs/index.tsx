@@ -2,7 +2,7 @@ import React from 'react'
 
 const ContactUs = () => {
   return (
-    <div>
+    <div className='px-7.5 md:px-3 lg:px-0'>
       <div className='container mx-auto pb-32.5 pt-20 flex flex-col justify-center items-center'>
         <img className='w-[1120px] object-cover' src="https://neoocular.qodeinteractive.com/wp-content/uploads/2021/09/about-us-img-01.jpg" alt="" />
         <div className='pt-13 flex flex-col justify-center items-center text-center'>

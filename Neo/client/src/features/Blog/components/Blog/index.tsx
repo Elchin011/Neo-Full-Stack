@@ -18,7 +18,7 @@ const Blog = () => {
     return (
         <div>
             <div className='py-9 bg-[#f9f9f9] '>
-                <div className='container mx-auto'>
+                <div className='container mx-auto px-7.5 md:px-3 lg:px-0'>
                     <h1 className='text-[40px] uppercase font-semibold tracking-[1px]'>Blog no sidebar</h1>
                     <p className='text-[15px] text-[#606060] mb-6 flex items-center gap-2'>
                         <li className='list-none'><Link href="/" className="text-[#565656] hover:text-black transition mb-3.5 text-[15px] relative group cursor-pointer ">Home

@@ -9,6 +9,7 @@ const BlogRouter=require("./routers/BlogRouter")
 const QuestionsRouter=require("./routers/QuestionsRouter")
 const AppointmentRouter=require("./routers/AppointmentRouter")
 const CuponRouter=require("./routers/CuponRouter")
+const CommentRouter=require("./routers/CommentRouter")
 
 
 
@@ -37,6 +38,7 @@ app.use("/api/blogs", BlogRouter)
 app.use("/api/questions", QuestionsRouter);
 app.use("/api/appointments", AppointmentRouter);
 app.use("/api/coupons", CuponRouter);
+app.use("/api/comments", CommentRouter); 
 
 
 

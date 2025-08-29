@@ -17,9 +17,9 @@ const BlogCard = ({
 
   return (
     <div className='overflow-hidden'>
-     <div>
+     <div className='px-7.5 md:px-3 lg:px-0'>
           <div className='overflow-hidden'>
-            <img className='w-full h-[1210px] object-cover hover:scale-102 transition-transform duration-500'  src={image} alt="" />
+            <img className='w-full h-[400px] lg:h-[1210px] object-cover hover:scale-102 transition-transform duration-500'  src={image} alt="" />
           </div>
           <div className='text-center mt-[30px]'>
             <p className='text-[#606060] text-[12px] font-semibold uppercase tracking-[1px] mb-2.5'>{date}</p>

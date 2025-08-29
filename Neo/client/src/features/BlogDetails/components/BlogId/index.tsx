@@ -72,8 +72,8 @@ const BlogId = () => {
         <div className="container mx-auto mt-32.5">
             {
                 data && (
-                    <div className="grid grid-cols-12 gap-15.5 object-cover" key={data.data._id || data.data.id}>
-                        <div className="col-span-9">
+                    <div className="grid grid-cols-2 lg:grid-cols-12 gap-15.5 object-cover" key={data.data._id || data.data.id}>
+                        <div className="lg:col-span-9 col-span-12">
                             <div>
                                 <img className="w-full object-cover" src={data.data.imageUrl} alt={data.data.name} />
                             </div>
@@ -89,11 +89,11 @@ const BlogId = () => {
                                 </div>
                             </div>
                             <div className='grid grid-cols-12 gap-5 h-[406px] pt-6'>
-                                <div className='col-span-3'>
-                                    <img className='h-full w-full object-cover' src="https://neoocular.qodeinteractive.com/wp-content/uploads/2021/07/b-single-img-2.jpg" alt="" />
+                                <div className='lg:col-span-3 col-span-12'>
+                                    <img className='h-full w-[350px] lg:w-full object-cover' src="https://neoocular.qodeinteractive.com/wp-content/uploads/2021/07/b-single-img-2.jpg" alt="" />
                                 </div>
-                                <div className='col-span-9'>
-                                    <img className='h-full w-full object-cover' src="https://neoocular.qodeinteractive.com/wp-content/uploads/2021/07/b-single-img-03.jpg" alt="" />
+                                <div className='lg:col-span-9 col-span-12'>
+                                    <img className='h-full w-[350px] lg:w-full object-cover' src="https://neoocular.qodeinteractive.com/wp-content/uploads/2021/07/b-single-img-03.jpg" alt="" />
                                 </div>
                             </div>
                             <div className='flex flex-col gap-7.5 px-12 mt-[41px]'>
@@ -122,7 +122,7 @@ const BlogId = () => {
 
                             </div>
                         </div>
-                        <div className="col-span-3">
+                        <div className="lg:col-span-3 col-span-12 w-full">
                             <div className="flex flex-col gap-7">
                                 <div>
                                     <h3 className='text-[17px] font-semibold tracking-[0.34px] uppercase'>Category</h3>
@@ -137,7 +137,7 @@ const BlogId = () => {
                                     <div className='flex flex-col gap-6 mt-5'>
                                         {latestData.map((item, idx) => (
                                             <div className='flex gap-4' key={idx}>
-                                                <img className='w-19 object-contain' src={item.img} alt={item.title} />
+                                                <img className='lg:w-19 w-full object-contain' src={item.img} alt={item.title} />
                                                 <div>
                                                     <p className='text-[12px] text-[#606060] tracking-[1.32px] uppercase font-medium'>{item.name}</p>
                                                     <h5 className='text-[15px] font-semibold tracking-[0.34px] uppercase mt-1'>{item.title}</h5>

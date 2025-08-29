@@ -14,8 +14,8 @@ const ServicesPricing = () => {
   });
 
   return (
-    <div className='container mx-auto pt-37.5 pb-25'>
-      <div className='grid grid-cols-3 gap-7.5'>
+    <div className='container mx-auto pt-37.5 pb-25 px-7.5 md:px-3 lg:px-0'>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7.5'>
         {data && data?.data?.map((item: any) => (
           <PricingCard
             key={item?._id}

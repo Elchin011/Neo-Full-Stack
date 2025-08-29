@@ -30,7 +30,7 @@ const PricingLogo = () => {
     <div>
         <div className='py-19 bg-[#f9f9f9]'>
             <div className='container mx-auto'>
-                <div className='grid grid-cols-5 gap-7.5'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-7.5'>
                     {
                         PricingLogo.map((item:any) => (
                             <div key={item.id} className='flex items-center justify-center'>

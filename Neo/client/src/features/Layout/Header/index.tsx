@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/Providers/CartProvider";
-import { ChevronUp, Facebook, Heart, Instagram, LogOutIcon, Mail, Menu, ShoppingBag, Twitch, Twitter, UserRound } from "lucide-react";
+import { ChevronUp, Clock, Facebook, Heart, Instagram, LocationEdit, LogOutIcon, Mail, MapPin, Menu, Phone, ShoppingBag, Smartphone, Twitch, Twitter, UserRound } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from 'react'
 import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react'
@@ -94,10 +94,10 @@ export const Header = () => {
 
   return (
     <div>
-      <div className="bg-black py-2">
+      <div className="bg-black py-2 hidden lg:block">
         <div className="container mx-auto grid grid-cols-2">
-          <div className="grid grid-cols-2">
-            <div className="flex items-center justify-center gap-2 text-white text-sm">
+          <div className="grid grid-cols-2 ">
+            <div className="flex items-center justify-start gap-5 text-white text-sm">
               <div className="flex items-center gap-3">
                 <Instagram size={15} color='white' fill='black' />
                 <Facebook size={15} color='white' fill='black' />
@@ -105,11 +105,31 @@ export const Header = () => {
                 <Twitter size={15} color='white' fill='black' />
               </div>
               <div>
-                <p>
-                  <Mail />
+                <p className="flex items-center gap-2 font-light text-[13px]">
+                  <Mail size={15} />
                   neoocular@example.com
                 </p>
               </div>
+            </div>
+          </div>
+          <div className="flex items-center justify-end gap-5 text-white text-sm">
+            <div>
+              <p className="flex items-center gap-2 font-light text-[13px] text-white">
+                <MapPin size={15} color='white' />
+                235 N Edison St, Arlington, VA 22203, USA
+              </p>
+            </div>
+            <div>
+              <p className="flex items-center gap-2 font-light text-[13px] text-white">
+                <Smartphone size={15} color='white' />
+                Call us: +34936915450
+              </p>
+            </div>
+            <div>
+              <p className="flex items-center gap-2 font-light text-[13px] text-white">
+                <Clock size={15} color='white' />
+                Mon-Sat: 9AM-9PM
+              </p>
             </div>
           </div>
 

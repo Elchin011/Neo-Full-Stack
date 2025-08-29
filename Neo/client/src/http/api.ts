@@ -1,4 +1,3 @@
-import { IForm } from "@/features/BkAppointment/themplates";
 import axios from "axios";
 
 const api = axios.create({
@@ -53,6 +52,17 @@ export const postApi = async (url: string, data: any) => {
     }
 }
 
+
+export const postApiComment = async (url: string, data: any) => {
+    let token;
+    if (typeof document !== "undefined") {
+        token = document.cookie.split("; ").find(row => row.startsWith("token="))?.split("=")[1];
+    }
+    const response = await api.post(url, data, {
+        headers: token ? { Authorization: `Bearer ${token}` } : {}
+    });
+    return response.data;
+}
 
 
 const BASE_URL = "http://localhost:3001/api";

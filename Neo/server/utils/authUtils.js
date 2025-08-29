@@ -1,11 +1,11 @@
 const getUserFromToken = (token) => {
-  if (!token) {
-    return null;
-  }
+  if (!token) return null;
   try {
-    const payload = JSON.parse(atob(token.split(".")[1]));
+    const payload = JSON.parse(
+      Buffer.from(token.split(".")[1], "base64").toString()
+    );
     return {
-      id: payload.id,
+      id: payload.id, // <- _id yox, id
       email: payload.email,
       roles: payload.roles || [],
     };
