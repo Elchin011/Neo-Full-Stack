@@ -160,84 +160,88 @@ const CouponList = () => {
               e.preventDefault();
               formik.handleSubmit();
             }}
-            className="space-y-4 grid grid-cols-2 gap-4"
+            className="space-y-4 grid grid-cols-1 gap-4"
           >
-            <div>
-              <Label htmlFor="code">Coupon Code</Label>
-              <Input
-                name="code"
-                value={formik.values.code}
-                onChange={formik.handleChange}
-                placeholder="E.g: NEO10"
-                onBlur={formik.handleBlur}
-                className="mt-2"
-              />
-            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="code">Coupon Code</Label>
+                <Input
+                  name="code"
+                  value={formik.values.code}
+                  onChange={formik.handleChange}
+                  placeholder="E.g: NEO10"
+                  onBlur={formik.handleBlur}
+                  className="mt-2"
+                />
+              </div>
 
+              <div>
+                <Label htmlFor="discountType">Coupon Type</Label>
+                <select
+                  name="discountType"
+                  value={formik.values.discountType}
+                  onChange={formik.handleChange}
+                  className="w-full border rounded-md p-2 mt-2"
+                >
+                  <option value="percentage">Percentage</option>
+                  <option value="fixed">Fixed Amount</option>
+                </select>
+              </div>
+
+              <div>
+                <Label htmlFor="discountValue">Coupon Value</Label>
+                <Input
+                  name="discountValue"
+                  type="number"
+                  value={formik.values.discountValue}
+                  onChange={formik.handleChange}
+                  placeholder="10"
+                  onBlur={formik.handleBlur}
+                  className="mt-2"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="minPurchase">Minimum Amount</Label>
+                <Input
+                  name="minPurchase"
+                  type="number"
+                  value={formik.values.minPurchase}
+                  onChange={formik.handleChange}
+                  placeholder="0"
+                  onBlur={formik.handleBlur}
+                  className="mt-2"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="expiryDate">Expiry Date</Label>
+                <Input
+                  name="expiryDate"
+                  type="date"
+                  value={formik.values.expiryDate}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className="mt-2"
+                />
+              </div>
+            </div>
             <div>
-              <Label htmlFor="discountType">Coupon Type</Label>
-              <select
-                name="discountType"
-                value={formik.values.discountType}
-                onChange={formik.handleChange}
-                className="w-full border rounded-md p-2 mt-2"
+              <Button
+                disabled={isCreating || isUpdating}
+                className="w-full block mt-4 py-4"
+                type="submit"
               >
-                <option value="percentage">Percentage</option>
-                <option value="fixed">Fixed Amount</option>
-              </select>
-            </div>
-
-            <div>
-              <Label htmlFor="discountValue">Coupon Value</Label>
-              <Input
-                name="discountValue"
-                type="number"
-                value={formik.values.discountValue}
-                onChange={formik.handleChange}
-                placeholder="10"
-                onBlur={formik.handleBlur}
-                className="mt-2"
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="minPurchase">Minimum Amount</Label>
-              <Input
-                name="minPurchase"
-                type="number"
-                value={formik.values.minPurchase}
-                onChange={formik.handleChange}
-                placeholder="0"
-                onBlur={formik.handleBlur}
-                className="mt-2"
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="expiryDate">Expiry Date</Label>
-              <Input
-                name="expiryDate"
-                type="date"
-                value={formik.values.expiryDate}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                className="mt-2"
-              />
+                {openEditDialog
+                  ? isUpdating
+                    ? "Updating..."
+                    : "Update"
+                  : isCreating
+                    ? "Creating..."
+                    : "Create"}
+              </Button>
             </div>
           </form>
-          <Button
-            disabled={isCreating || isUpdating}
-            className="w-full mt-4 py-3"
-            type="submit"
-          >
-            {openEditDialog
-              ? isUpdating
-                ? "Updating..."
-                : "Update"
-              : isCreating
-                ? "Creating..."
-                : "Create"}
-          </Button>
         </CommonDialog>
       )}
     </div>

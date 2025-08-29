@@ -64,6 +64,18 @@ export const postApiComment = async (url: string, data: any) => {
     return response.data;
 }
 
+export const deleteApiComment = async (url: string) => {
+    let token;
+    if (typeof document !== "undefined") {
+        token = document.cookie.split("; ").find(row => row.startsWith("token="))?.
+            split("=")[1];
+    }
+    const response = await api.delete(url, {
+        headers: token ? { Authorization: `Bearer ${token}` } : {}
+    });
+    return response.data;
+}
+
 
 const BASE_URL = "http://localhost:3001/api";
 

@@ -106,18 +106,14 @@ const PersonalList = () => {
         formData.append("file", values.imageUrl);
       }
       formData.append("specialty", values.specialty);
-
       if (editPerson) {
-        // Redaktə modunda
         updatePerson({ id: editPerson._id, formData });
       } else {
-        // Yeni şəxs yaratmaq
         createPerson(formData);
       }
     },
   });
 
-  // Edit düyməsinə basanda modal açmaq və formu doldurmaq
   const handleEditClick = (person: any) => {
     setEditPerson(person);
     setOpenEditDialog(true);
@@ -140,14 +136,14 @@ const PersonalList = () => {
       Actions: (
         <div className="flex items-center gap-2">
           <Button
-            className="bg-blue-500 text-white p-1.5 px-2.5 rounded-md hover:bg-blue-600"
+            className="bg-blue-500 text-white hover:text-white p-1.5 px-2.5 rounded-md hover:bg-blue-600"
             variant="outline"
             onClick={() => handleEditClick(item)}
           >
             <Pencil />
           </Button>
           <Button
-            className="bg-red-500 text-white p-1.5 px-2.5 rounded-md hover:bg-red-600"
+            className="bg-red-500 text-white hover:text-white p-1.5 px-2.5 rounded-md hover:bg-red-600"
             variant="outline"
             onClick={() => {
               if (confirm("Are you sure you want to delete this person?")) {

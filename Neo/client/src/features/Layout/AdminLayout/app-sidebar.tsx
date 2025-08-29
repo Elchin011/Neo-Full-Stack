@@ -1,4 +1,4 @@
-import { ChartBarStacked, CircleQuestionMark, Cuboid, FileUser, FolderKanban,ListTree,Palette, Ruler, Settings, Stethoscope } from "lucide-react"
+import {Calendar, CircleQuestionMark,  FileText, FileUser,Layers,ListTree,Package,Palette, Ruler, Settings, ShoppingCart, SlidersHorizontal, Stethoscope, TicketPercent } from "lucide-react"
 
 import {
     Sidebar,
@@ -17,7 +17,7 @@ const items = [
     {
         title: "Products",
         url: "/admin/products",
-        icon: FolderKanban ,
+        icon: Package ,
     },
     {
         title: "Products Sizes",
@@ -27,7 +27,7 @@ const items = [
     {
         title: "Product Categories",
         url: "/admin/product-categories",
-        icon: ChartBarStacked,
+        icon: Layers,
     },
     {
         title: "Product Colors",
@@ -37,7 +37,7 @@ const items = [
     {
         title: " Orders",
         url: "/admin/orders",
-        icon: Settings,
+        icon: ShoppingCart,
     },
     {
         title: "Personals",
@@ -52,12 +52,12 @@ const items = [
     {
         title: "Service Levels",
         url: "/admin/service-levels",
-        icon: ListTree,
+        icon: SlidersHorizontal,
     },
     {
         title: "Blog",
         url:"/admin/blog",
-        icon: Cuboid,
+        icon: FileText,
     },
     {
         title: "Questions",
@@ -67,12 +67,12 @@ const items = [
     {
         title: "Appointments",
         url: "/admin/appointments",
-        icon: Settings,
+        icon: Calendar,
     },
     {
         title: "Coupons",
         url: "/admin/coupons",
-        icon: Settings,
+        icon: TicketPercent,
     },
     
 ]
@@ -82,7 +82,7 @@ export function AppSidebar() {
         <Sidebar>
             <SidebarContent>
                 <SidebarGroup>
-                    <SidebarGroupLabel>Application</SidebarGroupLabel>
+                    <SidebarGroupLabel><Settings size={24} strokeWidth={3} className="mr-1" />  Admin Dashboard</SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {items.map((item) => (

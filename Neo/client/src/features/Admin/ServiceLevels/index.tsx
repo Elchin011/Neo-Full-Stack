@@ -136,7 +136,7 @@ const ServiceLevelsList = () => {
         Actions: (
           <div className="flex items-center gap-2">
             <Button
-              className="bg-blue-500 text-[14px] text-white px-4 py-2 rounded-md hover:bg-blue-600 hover:text-white duration-300"
+              className="bg-blue-500 text-[14px] text-white p-1.5 px-2.5 rounded-md hover:bg-blue-600 hover:text-white duration-300"
               variant="outline"
               onClick={() => {
                 handleEditClick(item);
@@ -145,7 +145,7 @@ const ServiceLevelsList = () => {
               <Pencil />
             </Button>
             <Button
-              className="bg-red-500 text-[14px] text-white px-4 py-2 rounded-md hover:bg-red-600 hover:text-white duration-300"
+              className="bg-red-500 text-[14px] text-white p-1.5 px-2.5 rounded-md hover:bg-red-600 hover:text-white duration-300"
               variant="outline"
               onClick={() => {
                 if (confirm("Are you sure you want to delete this service level?")) {

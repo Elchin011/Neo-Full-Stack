@@ -62,4 +62,27 @@ const getCommentsByProduct = async (req, res) => {
   }
 };
 
-module.exports = { createComment, getCommentsByProduct, deleteComment };
+const getProductRating = async (req, res) => {
+  try {
+    const { productId } = req.params;
+
+    const comments = await Comment.find({ product: productId });
+
+    if (!comments.length)
+      return res.json({ averageRating: 0, totalRatings: 0 });
+
+    const totalRating = comments.reduce((sum, c) => sum + (c.rating || 0), 0);
+    const averageRating = totalRating / comments.length;
+
+    res.json({
+      averageRating: Number(averageRating.toFixed(1)),
+      totalRatings: comments.length,
+    });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Rating hesablamaq mümkün olmadı", error: err.message });
+  }
+};
+
+module.exports = { createComment, getCommentsByProduct, deleteComment, getProductRating };

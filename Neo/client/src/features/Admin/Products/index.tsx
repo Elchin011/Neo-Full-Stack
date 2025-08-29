@@ -67,7 +67,7 @@ const ProductList = () => {
   });
 
   const {
-    mutate,
+    mutate: createProduct,
     isPending,
     isError: createIsErr,
     error: createErr,
@@ -109,6 +109,49 @@ const ProductList = () => {
       setEditProduct(null);
     },
   });
+
+
+  const formik = useFormik({
+    enableReinitialize: true,
+    initialValues: {
+      name: editProduct ? editProduct.name : "",
+      price: editProduct ? editProduct.price : "",
+      colors: editProduct ? editProduct.colors : "",
+      categories: editProduct ? editProduct.categories : "",
+      sizes: editProduct ? editProduct.sizes : "",
+      stockQuantity: editProduct ? editProduct.stockQuantity : "",
+      imageUrl: editProduct ? editProduct.imageUrl : "" as string | File,
+    },
+    validationSchema: yup.object({
+      name: yup.string().required("Name is required"),
+      price: yup.number().required("Price is required").positive("Price must be positive"),
+      colors: yup.string().required("Color is required"),
+      categories: yup.string().required("Category is required"),
+      sizes: yup.string().required("Size is required"),
+      stockQuantity: yup.number().required("Stock Quantity is required").min(0, "Stock Quantity cannot be negative"),
+      imageUrl: yup.mixed().required("Image is required"),
+    }),
+    onSubmit: async (values) => {
+      const formData = new FormData();
+      formData.append("name", values.name);
+      formData.append("price", values.price);
+      formData.append("colors", values.colors);
+      formData.append("categories", values.categories);
+      formData.append("sizes", values.sizes);
+      formData.append("stockQuantity", values.stockQuantity);
+      if (values.imageUrl && typeof values.imageUrl !== "string") {
+        formData.append("file", values.imageUrl);
+      }
+
+      if (editProduct) {
+        updateProduct({ id: editProduct._id, formData });
+      }
+      else {
+        createProduct(formData);
+      }
+    },
+  });
+
 
   const handleEditProduct = (product: any) => {
     setEditProduct(product);
@@ -159,48 +202,6 @@ const ProductList = () => {
         ),
       };
     });
-  const formik = useFormik({
-    enableReinitialize: true,
-    initialValues: {
-      name: editProduct ? editProduct.name : "",
-      price: editProduct ? editProduct.price : "",
-      colors: editProduct ? editProduct.colors : "",
-      categories: editProduct ? editProduct.categories : "",
-      sizes: editProduct ? editProduct.sizes : "",
-      stockQuantity: editProduct ? editProduct.stockQuantity : "",
-      imageUrl: editProduct ? editProduct.imageUrl : "" as string | File,
-    },
-    validationSchema: yup.object({
-      name: yup.string().required("Name is required"),
-      price: yup.number().required("Price is required").positive("Price must be positive"),
-      colors: yup.string().required("Color is required"),
-      categories: yup.string().required("Category is required"),
-      sizes: yup.string().required("Size is required"),
-      stockQuantity: yup.number().required("Stock Quantity is required").min(0, "Stock Quantity cannot be negative"),
-      imageUrl: yup.mixed().required("Image is required"),
-    }),
-    onSubmit: async (values) => {
-      console.log("Form values:", values);
-      const formData = new FormData();
-      formData.append("name", values.name);
-      formData.append("price", values.price);
-      formData.append("colors", values.colors);
-      formData.append("categories", values.categories);
-      formData.append("sizes", values.sizes);
-      formData.append("stockQuantity", values.stockQuantity);
-      if (values.imageUrl && typeof values.imageUrl !== "string") {
-        formData.append("file", values.imageUrl);
-      }
-
-      if (editProduct) {
-        updateProduct({ id: editProduct._id, formData });
-      }
-      else {
-        mutate(formData);
-      }
-    },
-  });
-
   return (
     <div>
       <div className="flex items-center my-5 justify-between">
@@ -221,6 +222,7 @@ const ProductList = () => {
           open={openAddDialog || Boolean(editProduct)}
           onClose={() => {
             setOpenAddDialog(false);
+            setEditProduct(null);
             formik.resetForm();
           }}
           title={Boolean(editProduct) ? "Edit Product" : "Create Product"}
