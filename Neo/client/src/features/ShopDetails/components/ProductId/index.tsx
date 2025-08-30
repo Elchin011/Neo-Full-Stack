@@ -222,8 +222,11 @@ const ProductId = () => {
 
                         <div className='pt-[40px]'>
                             <div className='flex items-center gap-2 mb-3'>
-                                <h5 className='text-[15px] text-[#1c1c1c] font-semibold uppercase'>Sku:</h5>
-                                <p className='text-[16px] text-[#565656]'>0011</p>
+                                <h5 className='text-[15px] text-[#1c1c1c] font-semibold uppercase'>Color:</h5>
+                                <span
+                                    className="w-5 h-5 rounded-full"
+                                    style={{ backgroundColor: data.data.colors.code }}
+                                ></span>
                             </div>
                             <div className='flex items-center gap-2 mb-3'>
                                 <h5 className='text-[15px] text-[#1c1c1c] font-semibold uppercase'>Categories:</h5>
@@ -250,7 +253,7 @@ const ProductId = () => {
                                             <button
                                                 key={tab}
                                                 type="button"
-                                                className={`flex-1 py-3 font-semibold text-center text-[18px] uppercase tracking-[0.34px] border-b transition-colors duration-200 ${activeTab === tab
+                                                className={`flex-1 py-3 font-semibold text-center text-[17px] uppercase tracking-[0.34px] border-b transition-colors duration-200 ${activeTab === tab
                                                     ? "border-black text-black"
                                                     : " text-gray-500"
                                                     }`}
@@ -267,7 +270,7 @@ const ProductId = () => {
                         {/* Content */}
                         <div className=" flex  items-center text-sta lg:text-center">
                             {activeTab === "tab1" && (
-                                <p className="text-[17px] text-[#565656] px-20">
+                                <p className="text-[17px] text-[#565656]">
                                     Aliquet nec ullamcorper sit amet. Viverra tellus in hac habitasse. Eros in cursus turpis massa tincidunt dui ut ornare. Amet consectetur adipiscing elit ut aliquam. Sit amet nulla facilisi morbi tempus iaculis urna id volutpat. Sed cras ornare arcu dui vivamus arcu felis bibendum. Nunc sed velit dignissim sodales ut eu sem integer. Dictumst quisque sagittis purus sit amet. Suspendisse in est ante in nibh mauris cursus mattis. Quis varius quam quisque id diam vel. A lacus vestibulum sed arcu non. Laoreet non curabitur gravida arcu ac tortor dignissim convallis. Et netus et malesuada fames ac turpis egestas maecenas.
                                 </p>
                             )}

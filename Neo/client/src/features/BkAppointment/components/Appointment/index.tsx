@@ -94,7 +94,7 @@ export default function Appointment() {
                         <input
                             type="text"
                             placeholder="First Name *"
-                            className="w-full border px-3 py-4"
+                            className="w-full border px-3 py-4 focus:outline-none"
                             value={firstName}
                             onChange={(e) => setFirstName(e.target.value)}
                             required
@@ -102,7 +102,7 @@ export default function Appointment() {
                         <input
                             type="text"
                             placeholder="Last Name *"
-                            className="w-full border px-3 py-4"
+                            className="w-full border px-3 py-4 focus:outline-none"
                             value={lastname}
                             onChange={(e) => setLastname(e.target.value)}
                             required
@@ -110,7 +110,7 @@ export default function Appointment() {
                         <input
                             type="tel"
                             placeholder="Phone *"
-                            className="w-full border px-3 py-4"
+                            className="w-full border px-3 py-4 focus:outline-none"
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
                             required
@@ -118,14 +118,14 @@ export default function Appointment() {
                         <input
                             type="email"
                             placeholder="Email *"
-                            className="w-full border px-3 py-4"
+                            className="w-full border px-3 py-4 focus:outline-none"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
                         />
                         {/* Həkim seçimi */}
                         <select
-                            className="w-full border px-3 py-4"
+                            className="w-full border px-3 py-4 focus:outline-none"
                             value={doctor}
                             onChange={(e) => setDoctor(e.target.value)}
                             required
@@ -141,14 +141,14 @@ export default function Appointment() {
 
                         <input
                             type="date"
-                            className="w-full border px-3 py-4"
+                            className="w-full border px-3 py-4 focus:outline-none"
                             value={date}
                             onChange={(e) => setDate(e.target.value)}
                             required
                         />
                         <input
                             type="time"
-                            className="w-full border px-3 py-4"
+                            className="w-full border px-3 py-4 focus:outline-none"
                             value={time}
                             onChange={(e) => setTime(e.target.value)}
                             required

@@ -64,15 +64,15 @@ const CouponList = () => {
       expiryDate: editCoupon ? editCoupon?.expiryDate?.split("T")[0] : "",
     },
     validationSchema: yup.object({
-      code: yup.string().required("Kupon kodu tələb olunur"),
+      code: yup.string().required("Coupon is required"),
       discountType: yup.string().oneOf(["percentage", "fixed"]).required(),
       discountValue: yup
         .number()
-        .required("Endirim dəyəri tələb olunur")
+        .required("Discount value is required")
         .min(1, "Minimum 1")
-        .max(1000, "Çox böyük dəyər"),
-      minPurchase: yup.number().min(0, "Minimum alış 0-dan az ola bilməz"),
-      expiryDate: yup.date().required("Bitmə tarixi tələb olunur"),
+        .max(1000, "Maximum value is too large"),
+      minPurchase: yup.number().min(0, "Minimum purchase cannot be less than 0"),
+      expiryDate: yup.date().required("Expiry date is required"),
     }),
     onSubmit: (values) => {
       if (editCoupon) {
@@ -103,8 +103,8 @@ const CouponList = () => {
       Discount:
         item?.discountType === "percentage"
           ? `${item?.discountValue}%`
-          : `${item?.discountValue} ₼`,
-      "Min. Amount": `${item?.minPurchase} ₼`,
+          : `${item?.discountValue} $`,
+      "Min. Amount": `${item?.minPurchase} $`,
       "Expiry Date": new Date(item?.expiryDate).toLocaleDateString(),
       Actions: (
         <div className="flex items-center gap-2">

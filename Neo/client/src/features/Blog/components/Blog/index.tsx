@@ -20,14 +20,14 @@ const Blog = () => {
             <div className='py-9 bg-[#f9f9f9] '>
                 <div className='container mx-auto px-7.5 md:px-3 lg:px-0'>
                     <h1 className='text-[40px] uppercase font-semibold tracking-[1px]'>Blog no sidebar</h1>
-                    <p className='text-[15px] text-[#606060] mb-6 flex items-center gap-2'>
+                    <div className='text-[15px] text-[#606060] mb-6 flex items-center gap-2'>
                         <li className='list-none'><Link href="/" className="text-[#565656] hover:text-black transition mb-3.5 text-[15px] relative group cursor-pointer ">Home
                             <span className="absolute left-0 bottom-0 w-0 h-[1px] bg-black transition-all duration-400 group-hover:w-full"></span>
                         </Link>
                         </li>
                         /
-                        <p><Link href="/blog">Blog no sidebar</Link></p>
-                    </p>
+                        <div><Link href="/blog">Blog no sidebar</Link></div>
+                    </div>
                 </div>
 
             </div>

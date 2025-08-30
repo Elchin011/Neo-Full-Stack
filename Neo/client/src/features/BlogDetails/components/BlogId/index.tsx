@@ -74,13 +74,13 @@ const BlogId = () => {
                 data && (
                     <div className="grid grid-cols-2 lg:grid-cols-12 gap-15.5 object-cover" key={data.data._id || data.data.id}>
                         <div className="lg:col-span-9 col-span-12">
-                            <div>
-                                <img className="w-full object-cover" src={data.data.imageUrl} alt={data.data.name} />
+                            <div className='px-7.5 md:px-3 lg:px-0'>
+                                <img className="lg:w-full w-[290px]  object-cover" src={data.data.imageUrl} alt={data.data.name} />
                             </div>
-                            <div className='mt-14 text-center'>
+                            <div className='mt-14 text-center w-[360px] px-7.5 md:px-3 lg:px-0 lg:w-full'>
                                 <p className='text-[12px] text-[#606060] tracking-[1.32px] uppercase font-medium'>{data.data.date}</p>
                                 <h1 className='text-[40px] font-semibold tracking-[1px] uppercase mt-[9px]'>{data.data.title}</h1>
-                                <div className='flex flex-col gap-2.5 px-12 mt-[9px]'>
+                                <div className='flex flex-col gap-2.5 lg:px-12 mt-[9px]'>
                                     <p className='text-[16px] text-[#565656] text-start' >Convallis convallis tellus id interdum velit laoreet id. Aenean pharetra magna ac placerat. In metus vulputate eu felis scelerisque. Tempor don a lacus commodo ullamcorper. Odio ut sem nulla pharetra diam. Praesent donne sed elementum facilisis leo vel fringilla est ullamcorper eget nulla. Ultricies integer quis auctor elit sed vulput nun. In dictum varius duis at consecet ur lor.</p>
                                     <p className='text-[16px] text-[#565656] text-start'>Elit pellentesque habitant morbi tristique senectus et. Cursus risus at ultrices mi tempus imperdiet malesuad pellentesque. Dolor sit amet elit consectetur adipiscing. Pretium quam vulputate dignissim suspendisse. Arcu cursus vitae congue mauris rhoncus vel aenean elit. Donne urna fermentum posuere nec tincidunt praesent in semper feugiat. Fermentum odio eu feugiat pretium nibh ipsum consequat. Gravida quis sed blandit turpis risus cursus .Tristique senectus et netus et malesuada fames ac turpis sed. At auctor urna nunc id.</p>
                                     <div className='py-[9px] pl-6.5 border-l border-black text-start mt-2.5'>
@@ -89,18 +89,18 @@ const BlogId = () => {
                                 </div>
                             </div>
                             <div className='grid grid-cols-12 gap-5 h-[406px] pt-6'>
-                                <div className='lg:col-span-3 col-span-12'>
-                                    <img className='h-full w-[350px] lg:w-full object-cover' src="https://neoocular.qodeinteractive.com/wp-content/uploads/2021/07/b-single-img-2.jpg" alt="" />
-                                </div>
-                                <div className='lg:col-span-9 col-span-12'>
-                                    <img className='h-full w-[350px] lg:w-full object-cover' src="https://neoocular.qodeinteractive.com/wp-content/uploads/2021/07/b-single-img-03.jpg" alt="" />
+                                <div className='lg:col-span-3 col-span-12 px-7.5 md:px-3 lg:px-0'>
+                                    <img className='lg:h-full w-[290px] lg:w-full object-cover' src="https://neoocular.qodeinteractive.com/wp-content/uploads/2021/07/b-single-img-2.jpg" alt="" />
+                                </div> 
+                                <div className='lg:col-span-9 col-span-12 px-7.5 md:px-3 lg:px-0'>
+                                    <img className='lg:h-full w-[290px] lg:w-full object-cover' src="https://neoocular.qodeinteractive.com/wp-content/uploads/2021/07/b-single-img-03.jpg" alt="" />
                                 </div>
                             </div>
-                            <div className='flex flex-col gap-7.5 px-12 mt-[41px]'>
-                                <div>
+                            <div className='flex flex-col gap-7.5 px-7.5 lg:px-12 lg:mt-[41px] mt-[250px] '>
+                                <div className='w-[290px] lg:w-full '>
                                     <p>Enim neque volutpat ac tincidunt vitae semper. Ultrices dui sapien eget mi. Risus at ultrices mi tempus eges imperdiet nulla malesuada. Magna fringilla urna porttitor rhoncus dolor purus non enim. Eu volutpat odio amet facilisis mauris sit amet. Feugiat vivamus at augue eget arcu dictum varius duis at. Nullam eget felis eget nunc lobortis. Elit ut aliquam purus sit amet luctus. Massa sed elementum tempus egestas sed. Egestas fringilla do phasellus faucibus scelerisque eleifend donec pretium vulputate varius morbi enim nunc faucibus.</p>
                                 </div>
-                                <div>
+                                <div className='w-[290px] lg:w-full'>
                                     <h2 className='text-[36px] font-semibold tracking-[0.34px] uppercase'>Handcrafted with purpose</h2>
                                     <h6 className='text-[19px] font-light'>Vitae justo eget magna do fermentum iaculis eu</h6>
                                     <div className='flex flex-col gap-2.5 mt-2.5 text-[16px] text-[#565656]'>
@@ -109,7 +109,7 @@ const BlogId = () => {
                                         <p>Sapien et ligula ullamcorper malesuada proin libero nunc. Accumsan in nisi scelerisque nisl eu ultrices vitae auctor. Eu scelerisque felis proin imperdiet. Eu consequat ac felis donec et. Euismod elementum nisi quis eleifend. Sit amet consectetur adipiscing elit. Ut porttitor leo a diam sollicitudin tempor id eu nisl. Tellus cras adipiscing enim eu turpis egestas. Ornare lectus sit amet est placerat in egestas erat. Cursus turpis tincidunt dui massa ut ornare lectus. Amet massa vitae tortor condimentum lacinia id cursus.</p>
                                     </div>
                                 </div>
-                                <div>
+                                <div className='w-[290px] lg:w-full'>
                                     <h2 className='text-[30px] font-semibold tracking-[0.34px] uppercase'>Why are sunglasses useful?</h2>
                                     <h6 className='text-[19px] font-light'>Vestibulum lectus mauris ultrices eros curs</h6>
                                     <div className='flex flex-col gap-2.5 mt-2.5 text-[16px] text-[#565656]'>
@@ -134,10 +134,10 @@ const BlogId = () => {
                                 </div>
                                 <div>
                                     <h3 className='text-[17px] font-semibold tracking-[0.34px] uppercase'>Latest Posts</h3>
-                                    <div className='flex flex-col gap-6 mt-5'>
+                                    <div className='flex flex-col gap-6 mt-5  md:px-3 lg:px-0'>
                                         {latestData.map((item, idx) => (
-                                            <div className='flex gap-4' key={idx}>
-                                                <img className='lg:w-19 w-full object-contain' src={item.img} alt={item.title} />
+                                            <div className='lg:flex flex-col gap-4 mb-5 md:mb-0 lg:mb-0' key={idx}>
+                                                <img className='lg:w-19 w-[290px] object-contain' src={item.img} alt={item.title} />
                                                 <div>
                                                     <p className='text-[12px] text-[#606060] tracking-[1.32px] uppercase font-medium'>{item.name}</p>
                                                     <h5 className='text-[15px] font-semibold tracking-[0.34px] uppercase mt-1'>{item.title}</h5>
@@ -158,7 +158,7 @@ const BlogId = () => {
                             </div>
                             <div className='mt-[54px]'>
                                 <h3 className='text-[17px] font-semibold tracking-[0.34px] uppercase mb-16'>Instagram</h3>
-                                <input type="text" className='pl-[22px] py-[15px] border border-[#eee] w-full' placeholder='Search'/>
+                                <input type="text" className='pl-[22px] py-[15px] border border-[#eee] lg:w-full' placeholder='Search'/>
                                 <button className='bg-black py-[14px] px-[38px] text-white text-[13px] uppercase tracking-[1.95px] mt-2.5'>Search</button>
                             </div>
                             <div className='mt-[54px]'>

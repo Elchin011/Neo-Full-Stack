@@ -80,9 +80,9 @@ export default function ControlledAccordions() {
                     </CustomAccordionSummary>
                     <AccordionDetails>
                         <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '16px' } }}>
-                            <div className='text-[#868686] pl-2 sm:pl-5.5'>
+                            <span className='text-[#868686] pl-2 sm:pl-5.5'>
                                 {item.answer}
-                            </div>
+                            </span>
                         </Typography>
                     </AccordionDetails>
                 </Accordion>

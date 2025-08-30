@@ -29,14 +29,28 @@ export const Header = () => {
   } = useCart();
   const [open, setOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
-
-  const user =
-    typeof window !== "undefined"
-      ? JSON.parse(localStorage.getItem("user") || "null")
-      : null;
+  const [activeTab, setActiveTab] = useState("tab1");
+  const [isVisible, setIsVisible] = useState(false);
 
 
-      const UserMenuNoSSr = dynamic (() => import("@/features/common/UserDIolog"), { ssr: false });
+  const [user, setUser] = useState<any>(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+
+  const updateUser = (newUser: any) => {
+    localStorage.setItem("user", JSON.stringify(newUser));
+    setUser(newUser);
+  };
+
+
+
+  const UserMenuNoSSr = dynamic(() => import("@/features/common/UserDIolog"), { ssr: false });
 
 
   const router = useRouter()
@@ -65,12 +79,6 @@ export const Header = () => {
     }
   })
 
-
-  const [activeTab, setActiveTab] = useState("tab1");
-
-
-
-  const [isVisible, setIsVisible] = useState(false);
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -351,14 +359,15 @@ export const Header = () => {
             <div className="items-center flex gap-4 justify-end">
               <div className="hidden lg:flex items-center gap-4">
                 <Heart strokeWidth={1.5} size={18} />
-               {!user ? (
-                <button
-                  onClick={() => setOpen(true)}
-                  className="border-none"
-                >
-                  <UserRound strokeWidth={1.5} size={18} />
-                </button>
-               ) : null}
+                {!user && (
+                  <button
+                    onClick={() => setOpen(true)}
+                    className="border-none"
+                  >
+                    <UserRound strokeWidth={1.5} size={18} />
+                  </button>
+                )}
+
               </div>
               <Link href="/cart">
                 <div className="relative">
@@ -448,7 +457,10 @@ export const Header = () => {
 
                         <div className="text-center text-lg font-medium">
                           {activeTab === "tab1" &&
-                            <LoginForm />
+                            <LoginForm onLoginSuccess={(userData) => {
+                              setOpen(false);
+                              updateUser(userData);
+                            }} />
                           }
                           {activeTab === "tab2" &&
                             <RegisterForm onRegisterSuccess={() => setActiveTab("tab1")} />

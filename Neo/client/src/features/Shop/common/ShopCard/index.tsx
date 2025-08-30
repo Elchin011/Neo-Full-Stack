@@ -32,12 +32,12 @@ export const ShopCard = ({
   return (
     <>
       <Card
-        className="cursor-pointer group w-full"
+        className="cursor-pointer group w-full bg-[#f9f9f9]"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
         <CardContent className="relative p-0">
-          <div className="w-full h-52.5 overflow-hidden relative">
+          <div className="w-full h-52.5 overflow-hidden relative bg-white">
             <Image
               loader={cloudinaryLoader}
               src={img ?? ""}
@@ -47,7 +47,7 @@ export const ShopCard = ({
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
-          <div className="pt-6 pb-10 text-center relative  bg-[#f9f9f9]">
+          <div className="pt-6 pb-10 text-center relative">
             <h3 className="text-[17px] font-semibold text-[#1c1c1c] mb-1.5 uppercase tracking-[0.34px]">
               <Link href={`/shops/${id}`}>{name}</Link>
             </h3>

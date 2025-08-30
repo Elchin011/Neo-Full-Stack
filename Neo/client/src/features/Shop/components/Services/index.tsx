@@ -2,7 +2,7 @@ import React from 'react'
 
 const ShopServices = () => {
     return (
-        <div className='bg-[#f9f9f9] lg:px-0 px-10 py-18'>
+        <div className='bg-[#f9f9f9]  px-7.5 lg:px-0 py-18'>
             <div className='container mx-auto text-center'>
                 <div className='grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-10'>
                     <div className='flex gap-3 items-center'>

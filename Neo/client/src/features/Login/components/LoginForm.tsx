@@ -7,7 +7,14 @@ import { useMutation } from "@tanstack/react-query";
 import { QueryKeys } from "@/constants/QueryKeys";
 import { postApi } from "@/http/api";
 import { setCookie } from "cookies-next/client";
-const LoginForm = () => {
+
+
+interface LoginFormProps {
+  onLoginSuccess: (userData: any) => void;
+}
+
+const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
+
   const router = useRouter();
 
   const { mutate, isPending, isError, error } = useMutation({
@@ -29,8 +36,8 @@ const LoginForm = () => {
           });
           console.log(data);
           localStorage.setItem("user", JSON.stringify(data.user));
-          router.push("/admin");
           formik.resetForm();
+          onLoginSuccess(data.user);
         },
         onError: (error) => {
           console.error("Login failed:", error);

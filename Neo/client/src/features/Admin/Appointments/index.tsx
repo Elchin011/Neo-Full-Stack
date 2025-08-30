@@ -68,7 +68,7 @@ const AppointmentList = () => {
         <div className="flex items-center gap-1.5">
           <Button
             variant="outline"
-            className="bg-blue-500 text-[14px] text-white p-1.5 px-2.5 rounded-md hover:bg-blue-600 duration-300"
+            className="bg-blue-500 text-[14px] text-white hover:text-white p-1.5 px-2.5 rounded-md hover:bg-blue-600 duration-300"
             onClick={() => {
               setIsOpenModalIsEditStatus(true);
               setStatus(item.status);
@@ -79,7 +79,7 @@ const AppointmentList = () => {
           </Button>
           <Button
             variant="outline"
-            className="bg-red-500 text-white p-1.5 px-2.5 rounded-md hover:bg-red-600 duration-300"
+            className="bg-red-500 text-white hover:text-white p-1.5 px-2.5 rounded-md hover:bg-red-600 duration-300"
             onClick={() => deleteAppointment(item._id)}
             disabled={isDeleting}
           >
