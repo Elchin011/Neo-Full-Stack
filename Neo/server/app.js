@@ -27,7 +27,7 @@ app.use(bodyParser.json())
 app.use(cors({
     origin:"*"
 }))
-const PORT=3001
+const PORT = process.env.PORT || 3001
 ConnectDb()
 
 app.use("/api/auth",AuthRouter)
